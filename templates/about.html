@@ -1,0 +1,23 @@
+{{define "content"}}
+<section class="page-header">
+    <h1>À propos de DataDex</h1>
+    <p class="muted">Application web pédagogique développée en Go avec l'API Plaid Sandbox.</p>
+</section>
+
+<section class="card about-card">
+    <h2>Comment ça marche ?</h2>
+    <p>DataDex récupère des transactions bancaires simulées depuis l'environnement <strong>Plaid Sandbox</strong> via une API HTTP en Go (librairie standard), sans JavaScript côté client.</p>
+
+    <ul class="about-list">
+        <li><strong>Recherche &amp; filtres :</strong> recherche par texte, catégorie, statut ou montant minimum.</li>
+        <li><strong>Pagination :</strong> navigation par page avec choix de 10, 20 ou 30 éléments.</li>
+        <li><strong>Favoris persistants :</strong> sauvegarde des transactions sélectionnées dans un fichier JSON local.</li>
+        <li><strong>Sécurité :</strong> les identifiants Plaid passent uniquement par des variables d'environnement.</li>
+    </ul>
+
+    <div class="detail-actions">
+        <a href="/transactions" class="btn btn-primary">Explorer les transactions</a>
+        <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+    </div>
+</section>
+{{end}}

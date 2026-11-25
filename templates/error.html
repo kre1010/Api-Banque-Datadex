@@ -1,0 +1,12 @@
+{{define "content"}}
+<section class="card error-card">
+    <p class="error-code">Erreur {{.StatusCode}}</p>
+    <h1>Oups, un problème est survenu</h1>
+    <p class="error-message">{{.ErrorMsg}}</p>
+
+    <div class="detail-actions">
+        <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+        <a href="/transactions" class="btn btn-secondary">Aller aux transactions</a>
+    </div>
+</section>
+{{end}}

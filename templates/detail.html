@@ -1,0 +1,41 @@
+{{define "content"}}
+<section class="page-header">
+    <a href="/transactions" class="btn-link">← Retour aux transactions</a>
+    <h1>Détails de la transaction</h1>
+</section>
+
+{{if .Transaction}}
+<article class="card detail-card">
+    <div class="tx-top">
+        <div>
+            <h2>{{.Transaction.Name}}</h2>
+            <p class="muted">ID : {{.Transaction.ID}}</p>
+        </div>
+        <span class="amount detail-amount">{{printf "%.2f" .Transaction.Amount}} €</span>
+    </div>
+
+    <dl class="detail-list">
+        <div>
+            <dt>Catégorie</dt>
+            <dd>{{.Transaction.Category}}</dd>
+        </div>
+        <div>
+            <dt>Statut</dt>
+            <dd>{{.Transaction.Status}}</dd>
+        </div>
+        <div>
+            <dt>Date</dt>
+            <dd>{{.Transaction.Date}}</dd>
+        </div>
+    </dl>
+
+    <div class="detail-actions">
+        <form method="POST" action="/favorites/add" class="inline-form">
+            <input type="hidden" name="id" value="{{.Transaction.ID}}">
+            <button type="submit" class="btn btn-primary">+ Ajouter aux favoris</button>
+        </form>
+        <a href="/favorites" class="btn btn-secondary">Voir mes favoris</a>
+    </div>
+</article>
+{{end}}
+{{end}}

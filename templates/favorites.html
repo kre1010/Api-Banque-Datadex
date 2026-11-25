@@ -1,0 +1,38 @@
+{{define "content"}}
+<section class="page-header">
+    <h1>Mes favoris</h1>
+    <p class="muted">{{.FavCount}} transaction(s) enregistrée(s)</p>
+</section>
+
+{{if .Favorites}}
+<section class="cards-list">
+    {{range .Favorites}}
+    <article class="card tx-card">
+        <div class="tx-top">
+            <div>
+                <h3><a href="/transactions/{{.ID}}">{{.Name}}</a></h3>
+                <p class="muted">{{.Category}} • {{.Date}} • {{.Status}}</p>
+            </div>
+            <div class="tx-right">
+                <span class="amount">{{printf "%.2f" .Amount}} €</span>
+            </div>
+        </div>
+
+        <div class="tx-actions">
+            <a href="/transactions/{{.ID}}" class="btn btn-secondary btn-sm">Détails</a>
+
+            <form method="POST" action="/favorites/remove" class="inline-form">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <button type="submit" class="btn btn-danger btn-sm">Retirer</button>
+            </form>
+        </div>
+    </article>
+    {{end}}
+</section>
+{{else}}
+<div class="card empty-state">
+    <p>Tu n'as encore aucune transaction en favori.</p>
+    <a href="/transactions" class="btn btn-primary">Parcourir les transactions</a>
+</div>
+{{end}}
+{{end}}

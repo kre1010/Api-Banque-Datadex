@@ -1,0 +1,53 @@
+{{define "content"}}
+<section class="hero">
+    <h1>Bienvenue sur DataDex</h1>
+    <p>Explorez et filtrez vos transactions bancaires simulées via l'API Plaid Sandbox.</p>
+    <div class="hero-actions">
+        <a href="/transactions" class="btn btn-primary">Voir les transactions</a>
+        <a href="/favorites" class="btn btn-secondary">Mes favoris</a>
+    </div>
+</section>
+
+<section class="stats-grid">
+    <div class="card">
+        <h2>Transactions chargées</h2>
+        <p class="stat-number">{{.TotalCount}}</p>
+        <p class="muted">Données issues de Plaid Sandbox</p>
+    </div>
+
+    <div class="card">
+        <h2>Favoris enregistrés</h2>
+        <p class="stat-number">{{.FavCount}}</p>
+        <p class="muted">Sauvegardés dans favorites.json</p>
+    </div>
+
+    <div class="card">
+        <h2>Recherche &amp; Filtres</h2>
+        <p>Cherchez par mot-clé, filtrez par catégorie, statut ou montant minimum, et naviguez page par page.</p>
+    </div>
+</section>
+
+{{if .Transactions}}
+<section class="section-block">
+    <div class="section-header">
+        <h2>Aperçu récent</h2>
+        <a href="/transactions">Tout afficher →</a>
+    </div>
+
+    <div class="cards-list">
+        {{range $index, $tx := .Transactions}}
+            {{if lt $index 4}}
+            <article class="card tx-card">
+                <div class="tx-top">
+                    <strong>{{$tx.Name}}</strong>
+                    <span class="amount">{{printf "%.2f" $tx.Amount}} €</span>
+                </div>
+                <p class="muted">{{$tx.Category}} • {{$tx.Date}} • {{$tx.Status}}</p>
+                <a href="/transactions/{{$tx.ID}}" class="btn-link">Voir les détails</a>
+            </article>
+            {{end}}
+        {{end}}
+    </div>
+</section>
+{{end}}
+{{end}}
