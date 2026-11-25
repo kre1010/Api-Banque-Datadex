@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
 	"api-banque-datadex/internal/favorites"
 	"api-banque-datadex/internal/finance"
@@ -135,7 +136,19 @@ func (h *AppHandler) getTransactions() ([]finance.Transaction, error) {
 		token = accToken
 	}
 
-	rawTx, err := h.PlaidClient.GetTransactions(token, h.StartDate, h.EndDate)
+	// En Sandbox, Plaid met parfois quelques secondes à préparer les transactions
+	var rawTx []plaid.Transaction
+	var err error
+	for i := 0; i < 6; i++ {
+		rawTx, err = h.PlaidClient.GetTransactions(token, h.StartDate, h.EndDate)
+		if err == nil {
+			break
+		}
+		if !strings.Contains(err.Error(), "PRODUCT_NOT_READY") {
+			break
+		}
+		time.Sleep(2 * time.Second)
+	}
 	if err != nil {
 		return nil, fmt.Errorf("récupération des transactions impossible : %w", err)
 	}
