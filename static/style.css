@@ -1,447 +1,224 @@
-/* Réinitialisation simple et variables de thème */
+/* ==========================================================================
+   1. VARIABLES & DESIGN TOKENS (PRIVATE BANKING EDITION)
+   ========================================================================== */
 :root {
-    --bg: #0f172a;
-    --surface: #1e293b;
-    --surface-hover: #273549;
-    --border: #334155;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --primary: #38bdf8;
-    --primary-hover: #0ea5e9;
-    --primary-text: #082f49;
-    --danger: #ef4444;
-    --danger-hover: #dc2626;
-    --radius: 12px;
+  /* Palette de fonds ultra-sombres */
+  --bg-main: #060709;
+  --bg-surface: rgba(18, 20, 26, 0.72);
+  --bg-surface-hover: rgba(28, 31, 40, 0.85);
+  
+  /* Accents & Métaux précieux */
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.18);
+  --accent-gold: #d4af37;
+  --accent-gold-gradient: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa8018 100%);
+  
+  /* Textes */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+
+  /* Bordures & Effets de verre */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-highlight: rgba(255, 255, 255, 0.16);
+  --blur-glass: blur(20px);
+
+  /* Typographie */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Rayons & Ombres */
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --shadow-luxury: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
 }
 
+/* ==========================================================================
+   2. RESET & BASE
+   ========================================================================== */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header & Navigation */
-.site-header {
-    background-color: rgba(15, 23, 42, 0.9);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.header-inner {
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-}
-
-.logo {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.nav a {
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: var(--muted);
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.nav a:hover {
-    color: var(--text);
-    background-color: var(--surface);
-}
-
-.nav a.active {
-    color: var(--primary);
-    background-color: rgba(56, 189, 248, 0.12);
-}
-
-/* Zone principale & Footer */
-.main-content {
-    flex: 1;
-    padding-top: 32px;
-    padding-bottom: 48px;
-}
-
-.site-footer {
-    border-top: 1px solid var(--border);
-    padding: 20px 0;
-    color: var(--muted);
-    font-size: 0.9rem;
-    text-align: center;
-}
-
-/* Titres et textes utilitaires */
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 6px;
-}
-
-h2 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-
-h3 {
-    font-size: 1.05rem;
-    margin-bottom: 4px;
-}
-
-.muted {
-    color: var(--muted);
-    font-size: 0.92rem;
-}
-
-.page-header {
-    margin-bottom: 24px;
-}
-
-.section-block {
-    margin-top: 32px;
-}
-
-.section-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 16px;
-}
-
-.section-header a {
-    color: var(--primary);
-    font-size: 0.95rem;
-}
-
-/* Cartes */
-.card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-}
-
-/* Boutons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-.btn-sm {
-    padding: 7px 12px;
-    font-size: 0.88rem;
-}
-
-.btn-primary {
-    background-color: var(--primary);
-    color: var(--primary-text);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    border-color: var(--border);
-    color: var(--text);
-}
-
-.btn-secondary:hover {
-    background-color: var(--surface-hover);
-}
-
-.btn-danger {
-    background-color: var(--danger);
-    color: #ffffff;
-}
-
-.btn-danger:hover {
-    background-color: var(--danger-hover);
-}
-
-.btn-link {
-    display: inline-block;
-    color: var(--primary);
-    font-size: 0.92rem;
-    margin-top: 10px;
-}
-
-.btn-link:hover {
-    text-decoration: underline;
-}
-
-.inline-form {
-    display: inline;
-}
-
-/* Accueil (Hero + Stats) */
-.hero {
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(30, 41, 59, 0.9));
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px 24px;
-    margin-bottom: 24px;
-}
-
-.hero p {
-    color: var(--muted);
-    max-width: 600px;
-    margin-top: 8px;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--primary);
-    margin: 6px 0;
-}
-
-/* Formulaire de recherche & filtres */
-.filters-form {
-    margin-bottom: 24px;
-}
-
-.filters-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.field label {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 500;
-}
-
-.field input,
-.field select {
-    background-color: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 9px 12px;
-    font-size: 0.95rem;
-}
-
-.field input:focus,
-.field select:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-.form-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-}
-
-/* Liste de transactions & favoris */
-.cards-list {
-    display: grid;
-    gap: 14px;
-}
-
-.tx-card {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    transition: border-color 0.2s, background-color 0.2s;
-}
-
-.tx-card:hover {
-    border-color: #475569;
-    background-color: var(--surface-hover);
-}
-
-.tx-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-}
-
-.tx-top h3 a:hover {
-    color: var(--primary);
-}
-
-.amount {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-}
-
-.tx-actions,
-.detail-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 36px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-}
-
-/* Pagination */
-.pagination {
-    margin-top: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.page-info {
-    color: var(--muted);
-    font-size: 0.92rem;
-}
-
-/* Page Détail */
-.detail-amount {
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.detail-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin: 24px 0;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-}
-
-.detail-list dt {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 4px;
-}
-
-.detail-list dd {
-    font-weight: 600;
-}
-
-/* Page À propos */
-.about-card p {
-    color: var(--muted);
-    margin-bottom: 16px;
-}
-
-.about-list {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 24px;
-}
-
-/* Page Erreur */
-.error-card {
-    text-align: center;
-    padding: 40px 24px;
-}
-
-.error-code {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--danger);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.error-message {
-    color: var(--muted);
-    margin: 12px auto 24px;
-    max-width: 540px;
-}
-
-.error-card .detail-actions {
-    justify-content: center;
-}
-
-/* Mobile */
-@media (max-width: 640px) {
-    .header-inner {
-        height: auto;
-        padding: 12px 0;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tx-top {
-        flex-direction: column;
-    }
-}
+  background-color: var(--bg-main);
+  /* Halo lumineux subtil en arrière-plan */
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(212, 175, 55, 0.06) 0%, transparent 40%);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 440px; /* Format mobile-first ultra-clean (élargissable pour desktop) */
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* ==========================================================================
+   3. SOLDE & HEADER
+   ========================================================================== */
+.balance-section {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.balance-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.balance-amount {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  /* Indispensable en fintech : évite que les chiffres sautent quand ils changent */
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.balance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-emerald-glow);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-emerald);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   4. CARTE BANCAIRE BLACK / METAL (EFFET 3D & REFLET)
+   ========================================================================== */
+.bank-card {
+  position: relative;
+  aspect-ratio: 1.586 / 1; /* Proportions exactes d'une vraie carte bancaire (ISO/IEC 7810) */
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  
+  /* Texture carbone / métal brossé sombre */
+  background: linear-gradient(135deg, #161920 0%, #090a0d 60%, #121619 100%);
+  border: 1px solid var(--border-highlight);
+  box-shadow: var(--shadow-luxury), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.bank-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(16, 185, 129, 0.15);
+}
+
+/* Reflet lumineux diagonal sur la carte */
+.bank-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--accent-gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Puce EMV métallique réaliste */
+.card-chip {
+  width: 42px;
+  height: 30px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #cbd5e1 100%);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.card-number {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-holder-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.card-holder-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   5. BOUTONS D'ACTION RAPIDE (GLASSMORPHISM)
+   ========================================================================== */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.action-btn {
+  background: var(--bg-surface);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  border: 1

@@ -65,7 +65,6 @@ func (c *Client) postJSON(endpoint string, payload any, result any) error {
 	}
 	defer resp.Body.Close()
 
-	// On lit toute la réponse en octets pour pouvoir soit lire l'erreur Plaid, soit décoder le résultat
 	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
